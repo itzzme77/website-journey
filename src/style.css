@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatUp {
+  0%, 100% {
+    transform: translateY(20px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translateY(20px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(20px) rotate(360deg);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font classes */
+.font-fira-code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Subtle glow effects */
+.neon-purple {
+  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+.neon-cyan {
+  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+.neon-pink {
+  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+.neon-green {
+  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+.neon-blue {
+  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+/* Subtle button glow animation */
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.2), 0 0 16px rgba(6, 182, 212, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.3), 0 0 24px rgba(6, 182, 212, 0.15);
+  }
+}
+
+.glowing-button {
+  animation: softGlow 3s ease-in-out infinite;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+.caret {
+  animation: blink 1s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Tooltip styles */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  position: absolute;
+  z-index: 50;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  color: #f9fafb;
+  background-color: #111;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s ease-out;
+}
+
+.tooltip-content.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+
+.tooltip-arrow.top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: #111;
+}
+
+.tooltip-arrow.bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: #111;
+}
+
+.tooltip-arrow.left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: #111;
+}
+
+.tooltip-arrow.right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: #111;
+}
+
+/* Easter egg animations */
+@keyframes rainbow {
+  0% { color: #ff6b6b; }
+  16% { color: #ffa500; }
+  33% { color: #ffff00; }
+  50% { color: #00ff00; }
+  66% { color: #0000ff; }
+  83% { color: #8a2be2; }
+  100% { color: #ff6b6b; }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes firework {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--rotation, 0deg)) translateX(0px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--rotation, 0deg)) translateX(80px) scale(0.5);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 20px #38bdf8, 0 0 40px #38bdf8, 0 0 60px #38bdf8;
+  }
+}
+
+/* Simple easter egg animations */
+@keyframes rainbow {
+  0% { color: #ff6b6b; }
+  25% { color: #ffa500; }
+  50% { color: #ffff00; }
+  75% { color: #00ff00; }
+  100% { color: #ff6b6b; }
+}
+
+@keyframes firework {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) rotate(360deg);
+  }
+}
