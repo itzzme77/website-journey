@@ -165,11 +165,190 @@ function App() {
       overflowY: 'scroll',
       scrollSnapType: 'y proximity'
     }}>
+      {/* Navbar */}
+      <nav style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        background: 'rgba(0, 0, 0, 0.9)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        zIndex: 1001,
+        padding: '1rem 2rem'
+      }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '2rem',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <a href="#intro" className="mobile-hidden" style={{
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
+          }}>Intro</a>
+          <a href="#html" className="mobile-hidden" style={{
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
+          }}>HTML</a>
+          <a href="#css" className="mobile-hidden" style={{
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
+          }}>CSS</a>
+          <a href="#javascript" className="mobile-hidden" style={{
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
+          }}>JavaScript</a>
+          <a href="#deployment" className="mobile-hidden" style={{
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
+          }}>Deployment</a>
+          <a href="#creator" className="mobile-hidden" style={{
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            transition: 'all 0.3s ease'
+          }}>Creator</a>
+          
+          {/* Hamburger Menu Button */}
+          <button 
+            className="hamburger desktop-hidden"
+            onClick={() => {
+              const mobileNav = document.querySelector('.mobile-nav');
+              if (mobileNav) {
+                mobileNav.classList.toggle('active');
+              }
+            }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#d1d5db',
+              fontSize: '1.5rem',
+              cursor: 'pointer',
+              padding: '0.5rem',
+              transition: 'color 0.3s ease'
+            }}
+          >
+            ☰
+          </button>
+        </div>
+        
+        {/* Mobile Navigation Menu */}
+        <div className="mobile-nav" style={{
+          display: 'none',
+          position: 'absolute',
+          top: '100%',
+          left: 0,
+          right: 0,
+          background: 'rgba(0, 0, 0, 0.98)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          padding: '1rem 0',
+          flexDirection: 'column',
+          gap: '0.5rem'
+        }}>
+          <a href="#intro" style={{
+            display: 'block',
+            padding: '0.75rem 2rem',
+            textAlign: 'center',
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s ease'
+          }}>Intro</a>
+          <a href="#html" style={{
+            display: 'block',
+            padding: '0.75rem 2rem',
+            textAlign: 'center',
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s ease'
+          }}>HTML</a>
+          <a href="#css" style={{
+            display: 'block',
+            padding: '0.75rem 2rem',
+            textAlign: 'center',
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s ease'
+          }}>CSS</a>
+          <a href="#javascript" style={{
+            display: 'block',
+            padding: '0.75rem 2rem',
+            textAlign: 'center',
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s ease'
+          }}>JavaScript</a>
+          <a href="#deployment" style={{
+            display: 'block',
+            padding: '0.75rem 2rem',
+            textAlign: 'center',
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s ease'
+          }}>Deployment</a>
+          <a href="#creator" style={{
+            display: 'block',
+            padding: '0.75rem 2rem',
+            textAlign: 'center',
+            color: '#d1d5db',
+            textDecoration: 'none',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.9rem',
+            transition: 'all 0.3s ease'
+          }}>Creator</a>
+        </div>
+      </nav>
+
       {/* Scroll Progress Bar */}
       <motion.div
         style={{
           position: 'fixed',
-          top: 0,
+          top: '80px',
           left: 0,
           width: progressWidth,
           height: '4px',
@@ -179,7 +358,43 @@ function App() {
         }}
       />
       
-      {/* Section 1: HTML Typing Animation */}
+      {/* Intro Section */}
+      <section id="intro" style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'start',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #000000 0%, #111827 50%, #1f2937 100%)',
+        padding: '6rem 2rem 2rem 2rem'
+      }}>
+        <h1 style={{
+          fontSize: '2.5rem',
+          fontFamily: 'Orbitron, sans-serif',
+          color: '#d1d5db',
+          textAlign: 'center',
+          marginBottom: '3rem',
+          textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
+          maxWidth: '800px',
+          lineHeight: '1.2'
+        }}>
+          How was this website made? Let's break it down.
+        </h1>
+        
+        <p style={{
+          fontSize: '1.2rem',
+          fontFamily: 'Fira Code, monospace',
+          color: '#9ca3af',
+          textAlign: 'center',
+          maxWidth: '600px',
+          lineHeight: '1.6',
+          marginBottom: '2rem'
+        }}>
+          Every website starts with three fundamental building blocks. Let's explore each one step by step.
+        </p>
+        
+        {/* Section 1: HTML Typing Animation */}
       <motion.section 
         ref={section1Ref}
         initial={{ scale: 0.95, opacity: 0 }}
@@ -1106,6 +1321,403 @@ function App() {
           </motion.button>
         </div>
       </motion.section>
+      </section>
+
+      {/* HTML Section */}
+      <section id="html" style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'start',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #111827 0%, #581c87 50%, #7c3aed 100%)',
+        padding: '6rem 2rem 2rem 2rem'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          maxWidth: '1000px',
+          color: '#f9fafb'
+        }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontFamily: 'Orbitron, sans-serif',
+            color: '#a78bfa',
+            textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
+            marginBottom: '2rem'
+          }}>
+            <i className="fas fa-file-code" style={{ marginRight: '0.5rem', color: '#00bcd4' }}></i>
+            The Skeleton: HTML
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#d1d5db',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            textAlign: 'left'
+          }}>
+            HTML (HyperText Markup Language) is the foundation of every webpage. Think of it as the skeleton that gives structure to your content. It uses tags to define different elements like headings, paragraphs, and links.
+          </p>
+          
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            padding: '1.5rem',
+            margin: '2rem 0',
+            textAlign: 'left'
+          }}>
+            <pre style={{
+              fontFamily: 'Fira Code, monospace',
+              fontSize: '1rem',
+              color: '#e5e7eb',
+              margin: 0,
+              whiteSpace: 'pre-wrap'
+            }}>
+              <code>{`<h1>Hello World</h1>
+<p>This is my first website.</p>
+<a href="https://example.com">Visit Example</a>`}</code>
+            </pre>
+          </div>
+          
+          <p style={{
+            fontSize: '1rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#c4b5fd',
+            lineHeight: '1.6',
+            textAlign: 'left'
+          }}>
+            This simple HTML creates a heading, a paragraph, and a clickable link. Each tag has a specific purpose and tells the browser how to display the content.
+          </p>
+        </div>
+      </section>
+
+      {/* CSS Section */}
+      <section id="css" style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'start',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #1e3a8a 0%, #312e81 50%, #6b21a8 100%)',
+        padding: '6rem 2rem 2rem 2rem'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          maxWidth: '1000px',
+          color: '#f9fafb'
+        }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontFamily: 'Orbitron, sans-serif',
+            color: '#2dd4bf',
+            textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
+            marginBottom: '2rem'
+          }}>
+            <i className="fas fa-paint-brush" style={{ marginRight: '0.5rem', color: '#ff9800' }}></i>
+            The Style: CSS
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#d1d5db',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            textAlign: 'left'
+          }}>
+            CSS (Cascading Style Sheets) is what makes websites beautiful. While HTML provides the structure, CSS controls the appearance - colors, fonts, spacing, and layout. It's like the paint and decoration for your HTML skeleton.
+          </p>
+          
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            padding: '1.5rem',
+            margin: '2rem 0',
+            textAlign: 'left'
+          }}>
+            <pre style={{
+              fontFamily: 'Fira Code, monospace',
+              fontSize: '1rem',
+              color: '#e5e7eb',
+              margin: 0,
+              whiteSpace: 'pre-wrap'
+            }}>
+              <code>{`body {
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #2dd4bf;
+  text-align: center;
+}`}</code>
+            </pre>
+          </div>
+          
+          <p style={{
+            fontSize: '1rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#5eead4',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            textAlign: 'left'
+          }}>
+            This CSS sets a dark background, white text, and styles the heading with a teal color. CSS selectors target HTML elements and apply styling rules.
+          </p>
+          
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginTop: '2rem'
+          }}>
+            <button 
+              id="theme-toggle"
+              style={{
+                background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+                border: 'none',
+                borderRadius: '25px',
+                padding: '12px 24px',
+                color: '#000',
+                fontFamily: 'Orbitron, sans-serif',
+                fontSize: '1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Toggle Dark/Light Mode
+            </button>
+            
+            <button 
+              id="font-toggle"
+              style={{
+                background: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
+                border: 'none',
+                borderRadius: '25px',
+                padding: '12px 24px',
+                color: '#fff',
+                fontFamily: 'Orbitron, sans-serif',
+                fontSize: '1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Change Font
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* JavaScript Section */}
+      <section id="javascript" style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'start',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #14532d 0%, #0f766e 50%, #0d9488 100%)',
+        padding: '6rem 2rem 2rem 2rem'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          maxWidth: '1000px',
+          color: '#f9fafb'
+        }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontFamily: 'Orbitron, sans-serif',
+            color: '#84cc16',
+            textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
+            marginBottom: '2rem'
+          }}>
+            <i className="fas fa-code" style={{ marginRight: '0.5rem', color: '#84cc16' }}></i>
+            The Brains: JavaScript
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#d1d5db',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            textAlign: 'left'
+          }}>
+            JavaScript is the interactive "brain" of your website. While HTML provides structure and CSS handles styling, JavaScript makes things happen - responding to clicks, updating content dynamically, and creating engaging user experiences.
+          </p>
+          
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            padding: '1.5rem',
+            margin: '2rem 0',
+            textAlign: 'left'
+          }}>
+            <pre style={{
+              fontFamily: 'Fira Code, monospace',
+              fontSize: '1rem',
+              color: '#e5e7eb',
+              margin: 0,
+              whiteSpace: 'pre-wrap'
+            }}>
+              <code>{`document.getElementById("theme-toggle")
+  .addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+  });`}</code>
+            </pre>
+          </div>
+          
+          <p style={{
+            fontSize: '1rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#a3e635',
+            lineHeight: '1.6',
+            textAlign: 'left'
+          }}>
+            This JavaScript code listens for clicks on the theme toggle button and switches between light and dark modes by adding/removing a CSS class. JavaScript bridges the gap between user interaction and visual changes.
+          </p>
+        </div>
+      </section>
+
+      {/* Deployment Section */}
+      <section id="deployment" style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'start',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #000000 0%, #1e3a8a 50%, #312e81 100%)',
+        padding: '6rem 2rem 2rem 2rem'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          maxWidth: '1000px',
+          color: '#f9fafb'
+        }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontFamily: 'Orbitron, sans-serif',
+            color: '#38bdf8',
+            textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
+            marginBottom: '2rem'
+          }}>
+            <i className="fas fa-cloud" style={{ marginRight: '0.5rem', color: '#38bdf8' }}></i>
+            The Deployment
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#d1d5db',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            textAlign: 'left'
+          }}>
+            Deployment is the process of putting your website online so anyone in the world can access it. It's like moving from your local development environment to a public space on the internet.
+          </p>
+          
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            padding: '1.5rem',
+            margin: '2rem 0',
+            textAlign: 'left'
+          }}>
+            <p style={{
+              fontSize: '1rem',
+              fontFamily: 'Fira Code, monospace',
+              color: '#60a5fa',
+              lineHeight: '1.6',
+              margin: 0
+            }}>
+              <strong>GitHub:</strong> A platform for storing and sharing code. It's like a digital filing cabinet for your projects.<br/><br/>
+              <strong>Vercel:</strong> A deployment platform that automatically builds and hosts your website. Connect your GitHub repository, and Vercel handles the rest!
+            </p>
+          </div>
+          
+          <p style={{
+            fontSize: '1rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#93c5fd',
+            lineHeight: '1.6',
+            textAlign: 'left'
+          }}>
+            The magic happens when you push your code to GitHub, and Vercel automatically detects changes and updates your live website. It's like having a personal assistant that publishes your work instantly!
+          </p>
+        </div>
+      </section>
+
+      {/* Creator Section */}
+      <section id="creator" style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'start',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #7c2d12 0%, #dc2626 50%, #ea580c 100%)',
+        padding: '6rem 2rem 2rem 2rem'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          maxWidth: '1000px',
+          color: '#f9fafb'
+        }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontFamily: 'Orbitron, sans-serif',
+            color: '#f97316',
+            textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
+            marginBottom: '2rem'
+          }}>
+            <i className="fas fa-user" style={{ marginRight: '0.5rem', color: '#a78bfa' }}></i>
+            The Creator
+          </h2>
+          <p style={{
+            fontSize: '1.2rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#d1d5db',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            textAlign: 'left'
+          }}>
+            This website was created by a curious learner, exploring the fascinating world of web development step by step with Cursor. Every line of code, every animation, and every interaction was crafted to demonstrate how the three pillars of web development work together.
+          </p>
+          
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            padding: '1.5rem',
+            margin: '2rem 0',
+            textAlign: 'center'
+          }}>
+            <p style={{
+              fontSize: '1.1rem',
+              fontFamily: 'Orbitron, sans-serif',
+              color: '#fed7aa',
+              lineHeight: '1.6',
+              margin: 0,
+              fontStyle: 'italic'
+            }}>
+              "The journey is just beginning 🚀"
+            </p>
+          </div>
+          
+          <p style={{
+            fontSize: '1rem',
+            fontFamily: 'Fira Code, monospace',
+            color: '#fdba74',
+            lineHeight: '1.6',
+            textAlign: 'left'
+          }}>
+            From the first blinking cursor to the final deployment, this project showcases the magic that happens when HTML, CSS, and JavaScript come together. Every website tells a story, and this one tells the story of learning, experimenting, and creating something amazing from scratch.
+          </p>
+        </div>
+      </section>
     </div>
   )
 }
