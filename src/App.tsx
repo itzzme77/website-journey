@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import './style.css'
 import { BasicTooltip } from './components/BasicTooltip'
+import CodeEditor from './components/CodeEditor'
+import ParticleSystem from './components/ParticleSystem'
+import SkillProgressBar from './components/SkillProgressBar'
 
 function App() {
   const [displayedText, setDisplayedText] = useState('')
@@ -20,6 +23,70 @@ function App() {
   const [cssBackground, setCssBackground] = useState('#1f2937')
   const [cssBorderRadius, setCssBorderRadius] = useState(8)
   const [deploymentVisible, setDeploymentVisible] = useState(false)
+  const [editorCode, setEditorCode] = useState(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive Web Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Web Development!</h1>
+        <p>This is an interactive example you can edit and see live results.</p>
+        <button onclick="changeColor()">Click me!</button>
+        <p id="message">Edit the code to see changes!</p>
+    </div>
+    
+    <script>
+        function changeColor() {
+            const message = document.getElementById('message');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            message.style.color = randomColor;
+            message.textContent = 'Great! You clicked the button!';
+        }
+    </script>
+</body>
+</html>`)
   const fullText = '<html>'
 
   // Scroll progress and section refs
@@ -163,8 +230,27 @@ function App() {
     <div style={{
       height: '100vh',
       overflowY: 'scroll',
-      scrollSnapType: 'y proximity'
+      scrollSnapType: 'y proximity',
+      position: 'relative'
     }}>
+      {/* Particle System Background */}
+      <ParticleSystem />
+      
+      {/* Scroll Progress Bar */}
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6)',
+          transformOrigin: '0%',
+          zIndex: 1002,
+          width: progressWidth
+        }}
+      />
+      
       {/* Navbar */}
       <nav style={{
         position: 'fixed',
@@ -184,59 +270,71 @@ function App() {
           maxWidth: '1200px',
           margin: '0 auto'
         }}>
-          <a href="#intro" className="mobile-hidden" style={{
-            color: '#d1d5db',
-            textDecoration: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.9rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            transition: 'all 0.3s ease'
+          <a href="#intro" className="mobile-hidden nav-link" style={{
+            color: '#d1d5db !important',
+            textDecoration: 'none !important',
+            fontFamily: 'Inter, sans-serif !important',
+            fontSize: '0.9rem !important',
+            padding: '0.5rem 1rem !important',
+            borderRadius: '4px !important',
+            transition: 'all 0.3s ease !important',
+            background: 'transparent !important',
+            transform: 'none !important'
           }}>Intro</a>
-          <a href="#html" className="mobile-hidden" style={{
-            color: '#d1d5db',
-            textDecoration: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.9rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            transition: 'all 0.3s ease'
+          <a href="#html" className="mobile-hidden nav-link" style={{
+            color: '#d1d5db !important',
+            textDecoration: 'none !important',
+            fontFamily: 'Inter, sans-serif !important',
+            fontSize: '0.9rem !important',
+            padding: '0.5rem 1rem !important',
+            borderRadius: '4px !important',
+            transition: 'all 0.3s ease !important',
+            background: 'transparent !important',
+            transform: 'none !important'
           }}>HTML</a>
-          <a href="#css" className="mobile-hidden" style={{
-            color: '#d1d5db',
-            textDecoration: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.9rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            transition: 'all 0.3s ease'
+          <a href="#css" className="mobile-hidden nav-link" style={{
+            color: '#d1d5db !important',
+            textDecoration: 'none !important',
+            fontFamily: 'Inter, sans-serif !important',
+            fontSize: '0.9rem !important',
+            padding: '0.5rem 1rem !important',
+            borderRadius: '4px !important',
+            transition: 'all 0.3s ease !important',
+            background: 'transparent !important',
+            transform: 'none !important'
           }}>CSS</a>
-          <a href="#javascript" className="mobile-hidden" style={{
-            color: '#d1d5db',
-            textDecoration: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.9rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            transition: 'all 0.3s ease'
+          <a href="#javascript" className="mobile-hidden nav-link" style={{
+            color: '#d1d5db !important',
+            textDecoration: 'none !important',
+            fontFamily: 'Inter, sans-serif !important',
+            fontSize: '0.9rem !important',
+            padding: '0.5rem 1rem !important',
+            borderRadius: '4px !important',
+            transition: 'all 0.3s ease !important',
+            background: 'transparent !important',
+            transform: 'none !important'
           }}>JavaScript</a>
-          <a href="#deployment" className="mobile-hidden" style={{
-            color: '#d1d5db',
-            textDecoration: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.9rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            transition: 'all 0.3s ease'
+          <a href="#deployment" className="mobile-hidden nav-link" style={{
+            color: '#d1d5db !important',
+            textDecoration: 'none !important',
+            fontFamily: 'Inter, sans-serif !important',
+            fontSize: '0.9rem !important',
+            padding: '0.5rem 1rem !important',
+            borderRadius: '4px !important',
+            transition: 'all 0.3s ease !important',
+            background: 'transparent !important',
+            transform: 'none !important'
           }}>Deployment</a>
-          <a href="#creator" className="mobile-hidden" style={{
-            color: '#d1d5db',
-            textDecoration: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '0.9rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            transition: 'all 0.3s ease'
+          <a href="#creator" className="mobile-hidden nav-link" style={{
+            color: '#d1d5db !important',
+            textDecoration: 'none !important',
+            fontFamily: 'Inter, sans-serif !important',
+            fontSize: '0.9rem !important',
+            padding: '0.5rem 1rem !important',
+            borderRadius: '4px !important',
+            transition: 'all 0.3s ease !important',
+            background: 'transparent !important',
+            transform: 'none !important'
           }}>Creator</a>
           
           {/* Hamburger Menu Button */}
@@ -358,7 +456,7 @@ function App() {
         }}
       />
       
-      {/* Intro Section */}
+      {/* Enhanced Hero Section */}
       <section id="intro" style={{
         minHeight: '100vh',
         scrollSnapAlign: 'start',
@@ -367,32 +465,242 @@ function App() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #000000 0%, #111827 50%, #1f2937 100%)',
-        padding: '6rem 2rem 2rem 2rem'
+        padding: '6rem 2rem 2rem 2rem',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <h1 style={{
-          fontSize: '2.5rem',
-          fontFamily: 'Orbitron, sans-serif',
-          color: '#d1d5db',
-          textAlign: 'center',
-          marginBottom: '3rem',
-          textShadow: '0 0 6px currentColor, 0 0 12px currentColor',
-          maxWidth: '800px',
-          lineHeight: '1.2'
+        {/* Glassmorphism Hero Card */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0, rotateX: 45 }}
+          animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          whileHover={{ 
+            scale: 1.02, 
+            rotateX: 5, 
+            rotateY: 5,
+            transition: { duration: 0.3 }
+          }}
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '24px',
+            padding: '3rem',
+            maxWidth: '900px',
+            textAlign: 'center',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            transformStyle: 'preserve-3d',
+            perspective: '1000px'
+          }}
+        >
+          {/* Glitch Effect Title */}
+          <motion.h1 
+            className="glitch-text"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            style={{
+              fontSize: '3.5rem',
+              fontFamily: 'Orbitron, sans-serif',
+              background: 'linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899)',
+              backgroundSize: '400% 400%',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              animation: 'gradientShift 3s ease infinite, textGlow 2s ease-in-out infinite alternate',
+              textAlign: 'center',
+              marginBottom: '2rem',
+              lineHeight: '1.1',
+              textShadow: '0 0 30px rgba(59, 130, 246, 0.5)'
+            }}
+          >
+            Web Development
+            <br />
+            <span style={{ fontSize: '2.5rem', opacity: 0.9 }}>Anatomy</span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            style={{
+              fontSize: '1.3rem',
+              fontFamily: 'Inter, sans-serif',
+              color: 'rgba(255, 255, 255, 0.8)',
+              textAlign: 'center',
+              maxWidth: '700px',
+              lineHeight: '1.7',
+              marginBottom: '3rem'
+            }}
+          >
+            Dive deep into the building blocks of modern web development. 
+            Explore HTML, CSS, and JavaScript through interactive examples and live code editing.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(59, 130, 246, 0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('html')?.scrollIntoView({ behavior: 'smooth' })}
+              style={{
+                background: 'linear-gradient(45deg, #3b82f6, #1d4ed8)',
+                color: 'white',
+                border: 'none',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                fontSize: '1.1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                boxShadow: '0 10px 25px rgba(59, 130, 246, 0.3)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Start Learning
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('playground')?.scrollIntoView({ behavior: 'smooth' })}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                color: 'white',
+                border: '2px solid rgba(139, 92, 246, 0.5)',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                fontSize: '1.1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Try Playground
+            </motion.button>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          style={{
+            position: 'absolute',
+            bottom: '2rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.5rem'
+          }}
+        >
+          <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.9rem' }}>Scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            style={{
+              width: '2px',
+              height: '30px',
+              background: 'linear-gradient(to bottom, #3b82f6, transparent)',
+              borderRadius: '1px'
+            }}
+          />
+        </motion.div>
+      </section>
+
+      {/* Skills Showcase Section */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        style={{
+          minHeight: '100vh',
+          scrollSnapAlign: 'start',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #1f2937 0%, #111827 50%, #000000 100%)',
+          padding: '6rem 2rem'
+        }}
+      >
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{
+            fontSize: '3rem',
+            fontFamily: 'Orbitron, sans-serif',
+            background: 'linear-gradient(45deg, #06b6d4, #8b5cf6)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            textAlign: 'center',
+            marginBottom: '3rem'
+          }}
+        >
+          Technology Stack
+        </motion.h2>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2rem',
+          maxWidth: '1000px',
+          width: '100%'
         }}>
-          How was this website made? Let's break it down.
-        </h1>
-        
-        <p style={{
-          fontSize: '1.2rem',
-          fontFamily: 'Fira Code, monospace',
-          color: '#9ca3af',
-          textAlign: 'center',
-          maxWidth: '600px',
-          lineHeight: '1.6',
-          marginBottom: '2rem'
-        }}>
-          Every website starts with three fundamental building blocks. Let's explore each one step by step.
-        </p>
+          <SkillProgressBar
+            skill="HTML5"
+            percentage={95}
+            icon="fab fa-html5"
+            color="#e34c26"
+            delay={0.2}
+          />
+          <SkillProgressBar
+            skill="CSS3"
+            percentage={90}
+            icon="fab fa-css3-alt"
+            color="#1572b6"
+            delay={0.4}
+          />
+          <SkillProgressBar
+            skill="JavaScript"
+            percentage={88}
+            icon="fab fa-js-square"
+            color="#f7df1e"
+            delay={0.6}
+          />
+          <SkillProgressBar
+            skill="React"
+            percentage={85}
+            icon="fab fa-react"
+            color="#61dafb"
+            delay={0.8}
+          />
+          <SkillProgressBar
+            skill="TypeScript"
+            percentage={82}
+            icon="fas fa-code"
+            color="#3178c6"
+            delay={1.0}
+          />
+          <SkillProgressBar
+            skill="Node.js"
+            percentage={80}
+            icon="fab fa-node-js"
+            color="#339933"
+            delay={1.2}
+          />
+        </div>
+      </motion.section>
         
         {/* Section 1: HTML Typing Animation */}
       <motion.section 
@@ -1321,7 +1629,6 @@ function App() {
           </motion.button>
         </div>
       </motion.section>
-      </section>
 
       {/* HTML Section */}
       <section id="html" style={{
@@ -1582,6 +1889,401 @@ h1 {
           </p>
         </div>
       </section>
+
+      {/* Interactive Code Playground Section */}
+      <motion.section
+        id="playground"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        style={{
+          minHeight: '100vh',
+          scrollSnapAlign: 'start',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+          padding: '6rem 2rem'
+        }}
+      >
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{
+            fontSize: '3rem',
+            fontFamily: 'Orbitron, sans-serif',
+            background: 'linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            textAlign: 'center',
+            marginBottom: '2rem'
+          }}
+        >
+          <i className="fas fa-code" style={{ marginRight: '1rem', color: '#06b6d4' }}></i>
+          Live Code Playground
+        </motion.h2>
+
+        <motion.p
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{
+            fontSize: '1.2rem',
+            color: 'rgba(255, 255, 255, 0.8)',
+            textAlign: 'center',
+            maxWidth: '800px',
+            marginBottom: '3rem',
+            lineHeight: '1.6'
+          }}
+        >
+          Experiment with HTML, CSS, and JavaScript in real-time. Edit the code and see your changes instantly!
+        </motion.p>
+
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{
+            width: '100%',
+            maxWidth: '1400px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '1px',
+            minHeight: '500px'
+          }}
+        >
+          {/* Code Editor Panel */}
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.3)',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <div style={{
+              padding: '1rem',
+              background: 'rgba(255, 255, 255, 0.05)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              color: 'white',
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '0.9rem',
+              fontWeight: '600'
+            }}>
+              <i className="fas fa-code" style={{ marginRight: '0.5rem', color: '#06b6d4' }}></i>
+              Code Editor
+            </div>
+            <div style={{ flex: 1 }}>
+              <CodeEditor
+                initialCode={editorCode}
+                onChange={setEditorCode}
+                theme="vs-dark"
+                language="html"
+                height="460px"
+              />
+            </div>
+          </div>
+
+          {/* Live Preview Panel */}
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.3)',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <div style={{
+              padding: '1rem',
+              background: 'rgba(255, 255, 255, 0.05)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              color: 'white',
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '0.9rem',
+              fontWeight: '600'
+            }}>
+              <i className="fas fa-eye" style={{ marginRight: '0.5rem', color: '#10b981' }}></i>
+              Live Preview
+            </div>
+            <div style={{ flex: 1, position: 'relative' }}>
+              <iframe
+                srcDoc={editorCode}
+                style={{
+                  width: '100%',
+                  height: '460px',
+                  border: 'none',
+                  background: 'white'
+                }}
+                sandbox="allow-scripts"
+                title="Live Preview"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.9, duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{
+            marginTop: '2rem',
+            display: 'flex',
+            gap: '1rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}
+        >
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(6, 182, 212, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const helloWorldCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0; 
+            padding: 20px; 
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container { 
+            background: rgba(255,255,255,0.1); 
+            padding: 2rem; 
+            border-radius: 15px; 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 { margin: 0 0 1rem 0; font-size: 2.5rem; }
+        p { margin: 0; font-size: 1.2rem; opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, World! 🌍</h1>
+        <p>Welcome to web development!</p>
+    </div>
+</body>
+</html>`;
+              setEditorCode(helloWorldCode);
+            }}
+            style={{
+              background: 'linear-gradient(45deg, #06b6d4, #0891b2)',
+              color: 'white',
+              border: 'none',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontSize: '0.9rem',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            Hello World
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(139, 92, 246, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const interactiveCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Demo</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 0; 
+            padding: 20px; 
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card { 
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 2.5rem; 
+            border-radius: 20px; 
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-10px) scale(1.02); }
+        h2 { margin: 0 0 1rem 0; font-size: 2rem; }
+        p { margin: 1rem 0; font-size: 1.1rem; transition: all 0.3s ease; }
+        button { 
+            background: linear-gradient(45deg, #ff6b6b, #ff5252); 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        button:hover { 
+            background: linear-gradient(45deg, #ff5252, #f44336); 
+            transform: scale(1.05); 
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        .magic { color: #ffd700; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🎨 Interactive Card</h2>
+        <p id="text">Click the button to see magic!</p>
+        <button onclick="changeText()">Click Me!</button>
+    </div>
+    <script>
+        function changeText() {
+            const text = document.getElementById('text');
+            const messages = [
+                '✨ Amazing!', 
+                '🚀 Fantastic!', 
+                '🎉 Wonderful!', 
+                '💫 Incredible!',
+                '🌟 Brilliant!',
+                '🎯 Perfect!'
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            text.innerHTML = '<span class="magic">' + randomMessage + '</span>';
+            text.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                text.style.transform = 'scale(1)';
+            }, 200);
+        }
+    </script>
+</body>
+</html>`;
+              setEditorCode(interactiveCode);
+            }}
+            style={{
+              background: 'linear-gradient(45deg, #8b5cf6, #7c3aed)',
+              color: 'white',
+              border: 'none',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontSize: '0.9rem',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            Interactive Demo
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(236, 72, 153, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const originalCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive Web Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Web Development!</h1>
+        <p>This is an interactive example you can edit and see live results.</p>
+        <button onclick="changeColor()">Click me!</button>
+        <p id="message">Edit the code to see changes!</p>
+    </div>
+    
+    <script>
+        function changeColor() {
+            const message = document.getElementById('message');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            message.style.color = randomColor;
+            message.textContent = 'Great! You clicked the button!';
+        }
+    </script>
+</body>
+</html>`;
+              setEditorCode(originalCode);
+            }}
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              color: 'white',
+              border: '2px solid rgba(255, 255, 255, 0.2)',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontSize: '0.9rem',
+              fontWeight: '600',
+              cursor: 'pointer',
+              backdropFilter: 'blur(10px)',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            Reset Code
+          </motion.button>
+        </motion.div>
+      </motion.section>
 
       {/* Deployment Section */}
       <section id="deployment" style={{

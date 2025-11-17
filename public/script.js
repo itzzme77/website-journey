@@ -6,11 +6,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Theme Toggle with smooth transitions
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
-            // Add smooth transition class
-            document.body.classList.add('font-changed');
+            // Enhanced theme toggle with smooth transitions
+            function toggleTheme() {
+                const body = document.body;
+                const isDark = body.classList.contains('dark-mode');
+                
+                // Add transition class for smooth theme change
+                body.classList.add('theme-transitioning');
+                
+                if (isDark) {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                }
+                
+                // Remove transition class after animation
+                setTimeout(() => {
+                    body.classList.remove('theme-transitioning');
+                }, 500);
+            }
             
-            // Toggle theme with smooth animation
-            document.body.classList.toggle('light-mode');
+            toggleTheme();
             
             // Update button text with animation
             setTimeout(() => {
@@ -20,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     themeToggle.textContent = 'Toggle Dark/Light Mode';
                 }
             }, 200);
-            
-            // Remove transition class after animation
             setTimeout(() => {
                 document.body.classList.remove('font-changed');
             }, 500);
@@ -150,10 +168,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Scroll Progress Indicator
+    const scrollProgress = document.createElement('div');
+    scrollProgress.className = 'scroll-progress';
+    document.body.appendChild(scrollProgress);
+    
+    // Update scroll progress
+    function updateScrollProgress() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        scrollProgress.style.width = scrollPercent + '%';
+    }
+    
+    // Throttled scroll event for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(updateScrollProgress, 10);
+    });
+    
+    // Navigation scroll effect
+    let lastScrollY = 0;
+    const nav = document.querySelector('nav');
+    
+    window.addEventListener('scroll', function() {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+    
     // Add loading animation for page load
     window.addEventListener('load', function() {
-        document.body.style.opacity = '1';
-        document.body.style.transform = 'translateY(0)';
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loading');
         
         // Make sure first section is visible immediately
         const firstSection = sections[0];
@@ -161,5 +217,15 @@ document.addEventListener('DOMContentLoaded', function() {
             firstSection.classList.add('animate-in');
             firstSection.classList.remove('animate-hidden');
         }
+        
+        // Initialize scroll progress
+        updateScrollProgress();
+    });
+    
+    // Performance optimization: Remove will-change after animations complete
+    sections.forEach(section => {
+        section.addEventListener('animationend', function() {
+            this.classList.add('animation-complete');
+        });
     });
 });
